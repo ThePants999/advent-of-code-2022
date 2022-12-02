@@ -18,8 +18,9 @@ public class AOC22
         ILogger<AOCRunner> logger = loggerFactory.CreateLogger<AOCRunner>();
 
         AOCRunner runner = AOCRunner.BuildRunner(logger, new System.Type[] {
-            typeof(Day1)
+            typeof(Day1),
+            typeof(Day2),
         });
-        runner.Run(1, 1);
+        runner.Run(2, 2);
     }
 }

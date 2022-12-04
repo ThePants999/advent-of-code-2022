@@ -24,7 +24,8 @@ public class AOC22
             typeof(Day1),
             typeof(Day2),
             typeof(Day3),
+            typeof(Day4),
         });
-        runner.Run(1, 3);
+        runner.Run(1, 4);
     }
 }

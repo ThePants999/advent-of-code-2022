@@ -82,7 +82,9 @@ public sealed class LineReader : IEnumerable<string>
         using (TextReader reader = dataSource())
         {
             string line;
+#pragma warning disable CS8600
             while ((line = reader.ReadLine()) != null)
+#pragma warning restore CS8600
             {
                 yield return line;
             }

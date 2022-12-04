@@ -1,11 +1,7 @@
 namespace Patersoft.AOC.AOC22;
 
-using Microsoft.Extensions.Logging;
-
 using Patersoft.AOC;
 using Patersoft.AOC.AOC22.Utils;
-
-using System.Collections.Generic;
 
 public class Day2 : Day
 {

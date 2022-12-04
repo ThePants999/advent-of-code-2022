@@ -1,12 +1,14 @@
 ﻿namespace Patersoft.AOC.AOC22;
 
 using Patersoft.AOC;
-using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 public class AOC22
 {
     public static void Main(string[] args)
     {
+        /*
         using ILoggerFactory loggerFactory =
             LoggerFactory.Create(builder =>
                 builder.AddSimpleConsole(options =>
@@ -15,12 +17,14 @@ public class AOC22
                     options.SingleLine = true;
                     options.TimestampFormat = "HH:mm:ss ";
                 }).SetMinimumLevel(LogLevel.Warning));
-        ILogger<AOCRunner> logger = loggerFactory.CreateLogger<AOCRunner>();
+        ILogger<AOCRunner> logger = loggerFactory.CreateLogger<AOCRunner>();*/
+        //ILogger<AOCRunner> logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<AOCRunner>.Instance;
 
-        AOCRunner runner = AOCRunner.BuildRunner(logger, new System.Type[] {
+        AOCRunner runner = AOCRunner.BuildRunner(NullLogger<AOCRunner>.Instance, new System.Type[] {
             typeof(Day1),
             typeof(Day2),
+            typeof(Day3),
         });
-        runner.Run(2, 2);
+        runner.Run(1, 3);
     }
 }

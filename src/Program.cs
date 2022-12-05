@@ -19,13 +19,13 @@ public class AOC22
                 }).SetMinimumLevel(LogLevel.Warning));
         ILogger<AOCRunner> logger = loggerFactory.CreateLogger<AOCRunner>();*/
         //ILogger<AOCRunner> logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<AOCRunner>.Instance;
-
         AOCRunner runner = AOCRunner.BuildRunner(NullLogger<AOCRunner>.Instance, new System.Type[] {
             typeof(Day1),
             typeof(Day2),
             typeof(Day3),
             typeof(Day4),
+            typeof(Day5),
         });
-        runner.Run(1, 4);
+        runner.Run(1, 5);
     }
 }

@@ -25,7 +25,27 @@ public class AOC22
             typeof(Day3),
             typeof(Day4),
             typeof(Day5),
+            typeof(Day6),
+            typeof(Day7),
+            typeof(Day8),
+            typeof(Day9),
+            typeof(Day10),
+            typeof(Day11),
+            typeof(Day12),
+            typeof(Day13),
+            typeof(Day14),
+            typeof(Day15),
+            typeof(Day16),
+            typeof(Day17),
+            typeof(Day18),
+            typeof(Day19),
+            typeof(Day20),
+            typeof(Day21),
+            typeof(Day22),
+            typeof(Day23),
+            typeof(Day24),
+            typeof(Day25),
         });
-        runner.Run(1, 5);
+        runner.Run(1, 7);
     }
 }

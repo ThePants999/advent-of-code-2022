@@ -33,6 +33,26 @@ public class Day3 : Day
             .ToString();
     }
 
+    protected override string? GetExampleInput()
+    {
+        return @"vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw";
+    }
+
+    protected override string? GetExamplePart1Answer()
+    {
+        return "157";
+    }
+
+    protected override string? GetExamplePart2Answer()
+    {
+        return "70";
+    }
+
     private static int SymbolToPriority(char symbol)
     {
         if (symbol <= 'Z')

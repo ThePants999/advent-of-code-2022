@@ -18,4 +18,19 @@ public class DayX : Day
     {
         return "";
     }
+
+    protected override string? GetExampleInput()
+    {
+        return @"";
+    }
+
+    protected override string? GetExamplePart1Answer()
+    {
+        return "";
+    }
+
+    protected override string? GetExamplePart2Answer()
+    {
+        return null;
+    }
 }

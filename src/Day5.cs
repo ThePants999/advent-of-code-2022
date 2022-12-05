@@ -33,9 +33,12 @@ public class Day5 : Day
         index++;
 
         // Remaining lines are instructions (and there's a blank line at the end we need to skip).
-        for (; index < lines.Length - 1; index++)
+        for (; index < lines.Length; index++)
         {
-            _instructions.Add(new Instruction(lines[index]));
+            if (lines[index].Length > 0)
+            {
+                _instructions.Add(new Instruction(lines[index]));
+            }
         }
 
         // Determine the number of crates from the length of the line,
@@ -84,7 +87,7 @@ public class Day5 : Day
         System.Text.StringBuilder builder = new System.Text.StringBuilder(num_stacks);
         for (int stack_ix = 1; stack_ix <= num_stacks; stack_ix++)
         {
-            builder.Append(_stacks[stack_ix].Peek());
+            builder.Append(temp_stacks[stack_ix].Peek());
         }
 
         return builder.ToString();
@@ -113,6 +116,29 @@ public class Day5 : Day
         }
 
         return builder.ToString();
+    }
+
+    protected override string? GetExampleInput()
+    {
+        return @"    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
+
+move 1 from 2 to 1
+move 3 from 1 to 3
+move 2 from 2 to 1
+move 1 from 1 to 2";
+    }
+
+    protected override string? GetExamplePart1Answer()
+    {
+        return "CMZ";
+    }
+
+    protected override string? GetExamplePart2Answer()
+    {
+        return "MCD";
     }
 }
 

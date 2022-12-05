@@ -26,6 +26,23 @@ public class Day2 : Day
     {
         return scorePart2.ToString();
     }
+
+    protected override string? GetExampleInput()
+    {
+        return @"A Y
+B X
+C Z";
+    }
+
+    protected override string? GetExamplePart1Answer()
+    {
+        return "15";
+    }
+
+    protected override string? GetExamplePart2Answer()
+    {
+        return "12";
+    }
 }
 
 enum RPS

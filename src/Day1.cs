@@ -48,4 +48,32 @@ public class Day1 : Day
     {
         return (elves[elves.Count - 1] + elves[elves.Count - 2] + elves[elves.Count - 3]).ToString();
     }
+
+    protected override string? GetExampleInput()
+    {
+        return @"1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000";
+    }
+
+    protected override string? GetExamplePart1Answer()
+    {
+        return "24000";
+    }
+
+    protected override string? GetExamplePart2Answer()
+    {
+        return "45000";
+    }
 }

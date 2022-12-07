@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
     <!--<ProjectReference Include="..\advent-of-code-dotnet-runner\\Patersoft.AOC.Runner.csproj" />-->
-    <PackageReference Include="Patersoft.AOC.Runner" Version="0.4.0" />
+    <PackageReference Include="Patersoft.AOC.Runner" Version="0.4.1" />
   </ItemGroup>
 
 </Project>

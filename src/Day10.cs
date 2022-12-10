@@ -242,7 +242,7 @@ internal class CRT
             }
         }
 
-        _image.Append('\n');
+        _image.Append(Environment.NewLine);
     }
 
     internal void Tick()
@@ -276,7 +276,7 @@ internal class CRT
         }
         if (position == 39)
         {
-            _image.Append('\n');
+            _image.Append(Environment.NewLine);
         }
 
         if (((_cycle + 20) % 40 == 0) && (_cycle <= 220))

@@ -106,7 +106,7 @@ internal class Operation
         }
     }
 
-    internal int Perform(int input)
+    internal long Perform(long input)
     {
         return _type switch {
             OperationTypes.Add => input + _operand,
@@ -120,7 +120,7 @@ internal class Operation
 internal class Forest
 {
     List<Monkey> _monkeys = new List<Monkey>();
-    internal int Lcm { get; init; }
+    internal long Lcm { get; init; }
 
     internal Forest (string input, bool worryDegrades)
     {
@@ -133,7 +133,7 @@ internal class Forest
             {
                 Monkey newMonkey = new Monkey(lines, this, worryDegrades);
                 _monkeys.Add(newMonkey);
-                Lcm = MathUtils.LowestCommonMultiple(Lcm, newMonkey.Test);
+                Lcm = (long)MathUtils.LowestCommonMultiple((int)Lcm, (int)newMonkey.Test);
             }
             catch (InputException)
             {
@@ -150,7 +150,7 @@ internal class Forest
         }
     }
 
-    internal void ThrowToMonkey(int item, int monkey)
+    internal void ThrowToMonkey(long item, int monkey)
     {
         _monkeys[monkey].CatchItem(item);
     }
@@ -167,9 +167,9 @@ internal class Forest
 
 internal class Monkey
 {
-    private Queue<int> _items = new Queue<int>();
+    private Queue<long> _items = new Queue<long>();
     private Operation _op;
-    internal int Test { get; init; }
+    internal long Test { get; init; }
     private int _trueMonkey;
     private int _falseMonkey;
     private Forest _forest;
@@ -194,10 +194,10 @@ internal class Monkey
         input.MoveNext();
         string[] startingItemsChunks = startingItems.Split(", ");
         // First item contains all the preceding text.
-        _items.Enqueue(int.Parse(startingItemsChunks[0].Substring(startingItemsChunks[0].Length - 2)));
+        _items.Enqueue(long.Parse(startingItemsChunks[0].Substring(startingItemsChunks[0].Length - 2)));
         for (int i = 1; i < startingItemsChunks.Length; i++)
         {
-            _items.Enqueue(int.Parse(startingItemsChunks[i]));
+            _items.Enqueue(long.Parse(startingItemsChunks[i]));
         }
 
         // Next line has the operation.
@@ -206,7 +206,7 @@ internal class Monkey
 
         // Then the test, the true line and the false line, and finally skip the blank line.
         string[] chunks = input.Current.Split(' ');
-        Test = int.Parse(chunks[chunks.Length - 1]);
+        Test = long.Parse(chunks[chunks.Length - 1]);
         input.MoveNext();
         chunks = input.Current.Split(' ');
         _trueMonkey = int.Parse(chunks[chunks.Length - 1]);
@@ -217,7 +217,7 @@ internal class Monkey
         input.MoveNext();
     }
 
-    internal void CatchItem(int item)
+    internal void CatchItem(long item)
     {
         _items.Enqueue(item);
     }
@@ -226,7 +226,7 @@ internal class Monkey
     {
         while (_items.Count > 0)
         {
-            int item = _items.Dequeue();
+            long item = _items.Dequeue();
             _itemsInspected++;
             item %= _forest.Lcm;
             item = _op.Perform(item);

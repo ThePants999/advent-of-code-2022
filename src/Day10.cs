@@ -205,7 +205,7 @@ noop";
 
 internal class ProgramCompleteException : Exception
 {
-    public ProgramCompleteException()
+    public ProgramCompleteException() : base()
     {
     }
 

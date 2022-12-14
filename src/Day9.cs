@@ -53,41 +53,11 @@ internal enum Directions
     Right
 }
 
-internal class Position
+internal class MoveablePosition : Position
 {
-    private int _row;
-    private int _col;
-    internal int Row { get { return _row; } }
-    internal int Col { get { return _col; } }
+    internal MoveablePosition(int row, int col) : base(row, col) {}
 
-    internal Position(int row, int col)
-    {
-        _row = row;
-        _col = col;
-    }
-
-    internal Position() : this(0, 0) { }
-
-    internal Position Clone()
-    {
-        return new Position(_row, _col);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        var item = obj as Position;
-        if (item == null)
-        {
-            return false;
-        }
-
-        return _row == item._row && _col == item._col;
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(_row, _col);
-    }
+    internal MoveablePosition() : base(0, 0) {}
 
     internal void Move(Directions dir)
     {
@@ -111,7 +81,7 @@ internal class Position
         }
     }
 
-    internal void MoveTowards(Position other)
+    internal void MoveTowards(MoveablePosition other)
     {
         if (Math.Abs(_row - other._row) > 1 || Math.Abs(_col - other._col) > 1)
         {
@@ -132,24 +102,29 @@ internal class Position
             }
         }
     }
+
+    new internal MoveablePosition Clone()
+    {
+        return new MoveablePosition(_row, _col);
+    }
 }
 
 internal class Rope
 {
-    private Position[] _knots = new Position[10];
-    private HashSet<Position> _knot1Visited = new HashSet<Position>();
+    private MoveablePosition[] _knots = new MoveablePosition[10];
+    private HashSet<MoveablePosition> _knot1Visited = new HashSet<MoveablePosition>();
     internal int Knot1VisitedCount { get { return _knot1Visited.Count; } }
-    private HashSet<Position> _knot9Visited = new HashSet<Position>();
+    private HashSet<MoveablePosition> _knot9Visited = new HashSet<MoveablePosition>();
     internal int Knot9VisitedCount { get { return _knot9Visited.Count; } }
 
     internal Rope()
     {
         for (int i = 0; i < _knots.Length; i++)
         {
-            _knots[i] = new Position();
+            _knots[i] = new MoveablePosition();
         }
-        _knot1Visited.Add(new Position());
-        _knot9Visited.Add(new Position());
+        _knot1Visited.Add(new MoveablePosition());
+        _knot9Visited.Add(new MoveablePosition());
     }
 
     internal void ApplyInstructions(string instructions)

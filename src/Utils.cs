@@ -118,3 +118,40 @@ public class MathUtils
         return (a / GreatestCommonFactor(a, b)) * b;
     }
 }
+
+public class Position
+{
+    protected int _row;
+    protected int _col;
+    public int Row { get { return _row; } }
+    public int Col { get { return _col; } }
+
+    public Position(int row, int col)
+    {
+        _row = row;
+        _col = col;
+    }
+
+    public Position() : this(0, 0) { }
+
+    public Position Clone()
+    {
+        return new Position(_row, _col);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        var item = obj as Position;
+        if (item == null)
+        {
+            return false;
+        }
+
+        return _row == item._row && _col == item._col;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_row, _col);
+    }
+}

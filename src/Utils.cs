@@ -119,8 +119,22 @@ public class MathUtils
     }
 }
 
+public enum CompassDirections
+{
+    N,
+    NE,
+    E,
+    SE,
+    S,
+    SW,
+    W,
+    NW
+}
+
 public class Position
 {
+    private static readonly CompassDirections[] ALL_DIRECTIONS = (CompassDirections[])Enum.GetValues(typeof(CompassDirections));
+
     protected int _row;
     protected int _col;
     public int Row { get { return _row; } }
@@ -137,6 +151,26 @@ public class Position
     public Position Clone()
     {
         return new Position(_row, _col);
+    }
+
+    public Position AdjacentPosition(CompassDirections direction)
+    {
+        return direction switch {
+            CompassDirections.N => new Position(_row - 1, _col),
+            CompassDirections.NE => new Position(_row - 1, _col + 1),
+            CompassDirections.E => new Position(_row, _col + 1),
+            CompassDirections.SE => new Position(_row + 1, _col + 1),
+            CompassDirections.S => new Position(_row + 1, _col),
+            CompassDirections.SW => new Position(_row + 1, _col - 1),
+            CompassDirections.W => new Position(_row, _col - 1),
+            CompassDirections.NW => new Position(_row - 1, _col - 1),
+            _ => throw new Exception()
+        };
+    }
+
+    public IEnumerable<Position> AllAdjacentPositions()
+    {
+        return ALL_DIRECTIONS.Select(dir => AdjacentPosition(dir));
     }
 
     public override bool Equals(object? obj)

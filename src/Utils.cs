@@ -155,3 +155,50 @@ public class Position
         return HashCode.Combine(_row, _col);
     }
 }
+
+public class Position3D
+{
+    public int X { get; init; }
+    public int Y { get; init; }
+    public int Z { get; init; }
+
+    public Position3D(int x, int y, int z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+
+    public Position3D Clone()
+    {
+        return new Position3D(X, Y, Z);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        var item = obj as Position3D;
+        if (item == null)
+        {
+            return false;
+        }
+
+        return X == item.X && Y == item.Y && Z == item.Z;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Z);
+    }
+
+    public Position3D[] AdjacentPositions()
+    {
+        Position3D[] positions = new Position3D[6];
+        positions[0] = new Position3D(X - 1, Y, Z);
+        positions[1] = new Position3D(X + 1, Y, Z);
+        positions[2] = new Position3D(X, Y - 1, Z);
+        positions[3] = new Position3D(X, Y + 1, Z);
+        positions[4] = new Position3D(X, Y, Z - 1);
+        positions[5] = new Position3D(X, Y, Z + 1);
+        return positions;
+    }
+}

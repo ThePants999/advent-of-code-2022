@@ -19,7 +19,8 @@ public class Day23 : Day
         _directions.AddLast(CompassDirections.W);
         _directions.AddLast(CompassDirections.E);
 
-        string[] rows = Input.Split(Environment.NewLine);
+        string fixedInput = Input.ReplaceLineEndings();
+        string[] rows = fixedInput.Split(Environment.NewLine);
         for (int row = 0; row < rows.Length; row++)
         {
             for (int col = 0; col < rows[row].Length; col++)
@@ -33,7 +34,6 @@ public class Day23 : Day
 
         for (int i = 0; i < 10; i++)
         {
-            //Console.WriteLine($"== End of Round {i + 1} ==");
             PerformRound();
         }
 
@@ -45,12 +45,19 @@ public class Day23 : Day
 
     protected override string ExecutePart2()
     {
-        return "";
+        int round = 11;
+        while (PerformRound())
+        {
+            round++;
+        }
+
+        return round.ToString();
     }
 
-    private void PerformRound()
+    private bool PerformRound()
     {
         Dictionary<Position, List<Position>> proposals = new Dictionary<Position, List<Position>>();
+        bool elfMoved = false;
 
         foreach (Position elf in _elves)
         {
@@ -108,6 +115,7 @@ public class Day23 : Day
                 System.Diagnostics.Debug.Assert(!_elves.Contains(entry.Key));
                 _elves.Remove(entry.Value[0]);
                 _elves.Add(entry.Key);
+                elfMoved = true;
             }
         }
 
@@ -116,23 +124,7 @@ public class Day23 : Day
         _directions.RemoveFirst();
         _directions.AddLast(oldPriorityDirection);
 
-        /*int minRow = _elves.Select(elf => elf.Row).Min();
-        int maxRow = _elves.Select(elf => elf.Row).Max();
-        int minCol = _elves.Select(elf => elf.Col).Min();
-        int maxCol = _elves.Select(elf => elf.Col).Max();
-        for (int row = minRow; row <= maxRow; row++)
-        {
-            for (int col = minCol; col <= maxCol; col++)
-            {
-                if (_elves.Contains(new Position(row, col)))
-                {
-                    Console.Write("#");
-                } else {
-                    Console.Write(".");
-                }
-            }
-            Console.WriteLine();
-        }*/
+        return elfMoved;
     }
 
     protected override string? GetExampleInput()
@@ -153,6 +145,6 @@ public class Day23 : Day
 
     protected override string? GetExamplePart2Answer()
     {
-        return null;
+        return "20";
     }
 }
